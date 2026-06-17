@@ -1,7 +1,5 @@
 package com.kusur.Kusur.controller;
 
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.kusur.Kusur.dto.BalanceDto;
 import com.kusur.Kusur.dto.UserDetailsDto;
 import com.kusur.Kusur.model.*;
@@ -19,12 +17,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.thymeleaf.util.ListUtils;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -57,6 +52,9 @@ public class MainController {
     }
     @GetMapping("/home")
     public String home(Model model,@AuthenticationPrincipal CustomUserDetails principal) {
+        System.out.println("Principal: " + principal);
+        System.out.println("Auth: " + SecurityContextHolder.getContext().getAuthentication());
+        System.out.println("Auth principal: " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         List<User> f1 = new ArrayList<>(friendshipRepository.findFriendshipsBySender(principal.getUser()).stream().map(f -> f.getReceiver()).toList());
         List<User> f2 = friendshipRepository.findFriendshipsByReceiver(principal.getUser()).stream().map( f -> f.getSender()).toList();
         f1.addAll(f2);

@@ -1,8 +1,9 @@
-package com.kusur.Kusur.service;
+package com.kusur.Kusur.security;
 
 import com.kusur.Kusur.dto.UserRegistrationDto;
 import com.kusur.Kusur.repository.UserRepository;
 import com.kusur.Kusur.security.CustomUserDetails;
+import com.kusur.Kusur.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -49,6 +50,7 @@ public class CustomUserDetailsService  implements UserDetailsService {
 
     @Override
     public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Loading user: " + username); // add this
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return new CustomUserDetails(user);

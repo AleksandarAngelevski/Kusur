@@ -130,14 +130,7 @@ public class SplitExpenseService {
     }
     public List<Expense> getAllExpenses(User user){
         List<Expense> expenses = expenseRepository.findByPayeeAndGroupIsNullAndSettled(user,false);
-        System.out.println("BLAA");
-        System.out.println(expenses);
         expenses.addAll(expenseRepository.findExpenseByUserReceiverAndGroupIsNullAndSettled(user,false));
-
-        System.out.println("BLAA2");
-        expenses.forEach(expense -> {
-            System.out.println(expense.isSettled());
-        });
         expenses.sort(Comparator.comparing(Expense::creationDate).reversed());
         return expenses;
     }

@@ -66,7 +66,6 @@ export async function addExpense(e){
             headers:{
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin":"*",
 
             },
             body: JSON.stringify(groupExpenseDto),

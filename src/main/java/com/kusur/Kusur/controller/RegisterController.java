@@ -2,7 +2,7 @@ package com.kusur.Kusur.controller;
 
 
 import com.kusur.Kusur.dto.UserRegistrationDto;
-import com.kusur.Kusur.service.CustomUserDetailsService;
+import com.kusur.Kusur.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
